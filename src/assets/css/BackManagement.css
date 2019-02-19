@@ -1,0 +1,32 @@
+#back-management{
+    width: 100%;
+    height: 100%;
+}
+.el-aside{
+   background-color: #2f4050;
+    width: 2000px;
+    /*height: 100%;*/
+}
+.el-main{
+    background-color: #f3f3f4;
+}
+.el-footer{
+    background-color: #ffffff;
+}
+.web-title{
+    font-size: 25px;
+    color: white;
+    font-weight: 200;
+    text-align: center;
+    padding: 30px;
+    background-color: #263a4a;
+}
+.search-box{
+    padding-top: 10px;
+    height: 50px;
+    vertical-align: middle;
+}
+.nav-header{
+    height: 60px;
+    background-color: gray;
+}

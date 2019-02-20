@@ -28,7 +28,9 @@
                         </el-submenu>
                         <el-menu-item index="2">
                             <i class="el-icon-menu"></i>
-                            <span slot="title">菜单管理</span>
+                            <span slot="title"><router-link to="/back/menu">
+            菜单管理
+            </router-link></span>
                         </el-menu-item>
                         <el-submenu index="3">
                             <template slot="title">
@@ -87,19 +89,19 @@
                         <el-col :span="11" :offset="6">
                             <div class="nav-header">
                                 <el-menu mode="horizontal">
-                                    <el-menu-item index="news">
+                                    <el-menu-item index="news1">
                                         <i class="el-icon-message"></i>
                                         <span>通知公告</span>
                                     </el-menu-item>
-                                    <el-menu-item index="news">
+                                    <el-menu-item index="news2">
                                         <i class="el-icon-service"></i>
                                         <span>个人中心</span>
                                     </el-menu-item>
-                                    <el-menu-item index="news">
+                                    <el-menu-item index="news3">
                                         <i class="el-icon-setting"></i>
                                         <span>设置</span>
                                     </el-menu-item>
-                                    <el-menu-item index="news">
+                                    <el-menu-item index="news4">
                                         <i class="el-icon-circle-close-outline"></i>
                                         <span>退出</span>
                                     </el-menu-item>
@@ -108,7 +110,9 @@
                         </el-col>
                     </el-row>
                 </el-header>
-                <el-main>Main</el-main>
+                <el-main>
+                    <router-view></router-view>
+                </el-main>
                 <el-footer>Footer</el-footer>
             </el-container>
         </el-container>

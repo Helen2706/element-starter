@@ -63,16 +63,16 @@
                     params: {
                         menuId: row.menuId
                     }
-                }).then(function (res) {
+                }).then((res)=> {
                     if (res.data.code == 0) {
-                        console.log("删除菜单操作成功！");
-                        $root.axios.post('http://localhost:8088/navbar/list').then(
+                        this.axios.post('http://localhost:8088/navbar/list').then(
                             body => {
                                 this.menuList = body.data;
                             }
                         );
+                        this.deleteSuccess();
                     } else {
-                        console.log("删除菜单操作失败！");
+                        this.deleteFailed();
                     }
                 }).catch(function (res) {
                     console.log(res);
@@ -83,6 +83,9 @@
             },
             handleAdd(index, row) {
                 console.log(index, row);
+            },
+            deleteFailed(){
+                this.$message.error('操作失败');
             }
         }
 

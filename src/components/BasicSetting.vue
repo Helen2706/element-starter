@@ -14,7 +14,15 @@
                         <el-form-item label="当前图标：" v-if="!isSettingNull">
                             <img :src="currentPicture" alt="">
                         </el-form-item>
-                        <el-form-item label="网站图标：">
+                        <el-form-item label="更改图标：" v-if="!isSettingNull">
+                            <el-upload class="upload-demo"
+                                       name="picture" action="http://localhost:8088/upload/picture"
+                                       list-type="picture-card" :limit="1" :fileList="fileList"
+                                       :before-upload="beforeUpload" :on-success="handleSucess" :on-exceed="handleExceed">
+                                <i class="el-icon-upload"></i>
+                            </el-upload>
+                        </el-form-item>
+                        <el-form-item label="网站图标：" v-if="isSettingNull">
                             <el-upload class="upload-demo"
                                        name="picture" action="http://localhost:8088/upload/picture"
                                        list-type="picture-card" :limit="1" :fileList="fileList"
@@ -73,7 +81,7 @@
                 },
                 fileList:[],                  //上传文件列表
                 isSettingNull:true,            //设置是否为空
-                currentPicture:''
+                currentPicture:''              //当前图标位置
             }
         },mounted(){
             this.getBasicSetting();

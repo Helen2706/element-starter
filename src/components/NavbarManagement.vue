@@ -6,7 +6,7 @@
             <el-button type="danger" size="small" icon="el-icon-delete" @click="batchRemove">删除</el-button>
         </div>
         <div id="menu-table">
-            <el-table :data="menuList" @selection-change="handleSelectionChange" border stripe max-height="600px">
+            <el-table :data="menuList" @selection-change="handleSelectionChange" border stripe>
                 <el-table-column type="selection" align="center" width="80"></el-table-column><!--多选框-->
                 <el-table-column label="编号" prop="menuId" align="center" width="80"></el-table-column>
                 <el-table-column label="菜单名称" prop="name" align="center" width="120"></el-table-column>

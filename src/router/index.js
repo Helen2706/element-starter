@@ -7,6 +7,7 @@ import CollegeWebsite from '../components/CollegeWebsite'
 import CollegeHomePage from '../components/CollegeHomePage'
 import Education from '../components/Education'
 import BoShiEducation from '../components/BoShiEducation'
+import Carousel from '../components/Carousel'
 
 Vue.use(Router);
 
@@ -19,8 +20,8 @@ export default new Router({
             children:[
                 {
                     path:'',
-                    name:'BasicSetting',
-                    component:BasicSetting
+                    name:'Carousel',
+                    component:Carousel
                 },{
                     path:'menu',
                     name:'NavbarManagement',
@@ -31,6 +32,11 @@ export default new Router({
                     path:'basic-setting',
                     name:'BasicSetting',
                     component:BasicSetting
+                },
+                {
+                    path:'carousel',
+                    name:'Carousel',
+                    component:Carousel
                 }
             ]
         },
@@ -41,8 +47,8 @@ export default new Router({
             children:[
                 {
                     path:'',
-                    name:'BasicSetting',
-                    component:BasicSetting
+                    name:'Carousel',
+                    component:Carousel
                 }]
         },
         {

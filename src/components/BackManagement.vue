@@ -6,7 +6,7 @@
                     <span>后台管理系统</span>
                 </div>
                 <div class="navbar-menu">
-                    <el-menu default-active="4-1" background-color="#2f4050"
+                    <el-menu default-active="4-2" background-color="#2f4050"
                              text-color="#fff" active-text-color="#ffd04b">
                         <el-submenu index="1">
                             <template slot="title">
@@ -49,6 +49,13 @@
                                 <el-menu-item index="4-1">
                                     <span slot="title">
                                         基础设置
+                                    </span>
+                                </el-menu-item>
+                            </router-link>
+                            <router-link to="/back/carousel">
+                                <el-menu-item index="4-2">
+                                    <span slot="title">
+                                        轮播图设置
                                     </span>
                                 </el-menu-item>
                             </router-link>

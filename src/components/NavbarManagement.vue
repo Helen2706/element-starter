@@ -162,7 +162,7 @@
                     } else {
                         this.deleteFailed();
                     }
-                }).catch(function (res) {
+                }).catch((res)=> {
                     console.log(res);
                 });
             },
@@ -184,7 +184,7 @@
                         } else {
                             this.deleteFailed();
                         }
-                    }).catch(function (res) {
+                    }).catch((res)=> {
                         console.log(res);
                     });
                 }
@@ -271,7 +271,7 @@
                     } else {
                         this.addFailed();
                     }
-                }).catch(function (res) {
+                }).catch((res)=> {
                     console.log(res);
                     this.addFailed();
                 });
@@ -294,7 +294,7 @@
                     } else {
                         this.editFailed();
                     }
-                }).catch(function (res) {
+                }).catch((res)=> {
                     console.log(res);
                     this.editFailed();
                 });

@@ -16,7 +16,12 @@
 }
 .el-footer{
     min-width: 1100px;
-    background-color: #ffffff;
+    /*background-color: #666666;*/
+}
+.el-footer #footer{
+    margin-top: 10px;
+    text-align:center;
+    font-size: 14px;
 }
 .web-title{
     font-size: 25px;

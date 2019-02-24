@@ -6,7 +6,7 @@
                     <span>后台管理系统</span>
                 </div>
                 <div class="navbar-menu">
-                    <el-menu default-active="2" background-color="#2f4050"
+                    <el-menu default-active="4-1" background-color="#2f4050"
                              text-color="#fff" active-text-color="#ffd04b">
                         <el-submenu index="1">
                             <template slot="title">
@@ -26,43 +26,52 @@
                             </el-submenu>
                             <el-menu-item index="1-4">选项四</el-menu-item>
                         </el-submenu>
-                        <el-menu-item index="2">
-                            <i class="el-icon-menu"></i>
-                            <span slot="title"><router-link to="/back/menu">
-            菜单管理
-            </router-link></span>
-                        </el-menu-item>
+                        <router-link to="/back/menu">
+                            <el-menu-item index="2">
+                                <i class="el-icon-menu"></i>
+                                <span slot="title">
+                                    菜单管理
+                                </span>
+                            </el-menu-item>
+                        </router-link>
                         <el-submenu index="3">
                             <template slot="title">
                                 <i class="el-icon-circle-plus"></i>
                                 <span>代码生成</span>
                             </template>
                         </el-submenu>
-                        <el-submenu index="3">
+                        <el-submenu index="8">
                             <template slot="title">
                                 <i class="el-icon-star-on"></i>
                                 <span>系统管理</span>
                             </template>
+                            <router-link to="/back/basic-setting">
+                                <el-menu-item index="4-1">
+                                    <span slot="title">
+                                        基础设置
+                                    </span>
+                                </el-menu-item>
+                            </router-link>
                         </el-submenu>
-                        <el-submenu index="3">
+                        <el-submenu index="4">
                             <template slot="title">
                                 <i class="el-icon-goods"></i>
                                 <span>图标管理</span>
                             </template>
                         </el-submenu>
-                        <el-submenu index="3">
+                        <el-submenu index="5">
                             <template slot="title">
                                 <i class="el-icon-circle-check"></i>
                                 <span>基础管理</span>
                             </template>
                         </el-submenu>
-                        <el-submenu index="3">
+                        <el-submenu index="6">
                             <template slot="title">
                                 <i class="el-icon-edit"></i>
                                 <span>权限管理</span>
                             </template>
                         </el-submenu>
-                        <el-submenu index="3">
+                        <el-submenu index="7">
                             <template slot="title">
                                 <i class="el-icon-message"></i>
                                 <span>通知公告</span>
@@ -113,7 +122,12 @@
                 <el-main>
                     <router-view></router-view>
                 </el-main>
-                <el-footer>Footer</el-footer>
+                <el-footer>
+                    <div id="footer">
+                        <span>学院网站通用后台管理系统</span><br>
+                        <span>版权所有 &copy; 中国传媒大学计算机与网络空间安全学院</span>
+                    </div>
+                </el-footer>
             </el-container>
         </el-container>
     </div>

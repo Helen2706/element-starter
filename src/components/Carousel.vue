@@ -36,7 +36,7 @@
                 <el-form-item label="轮播图图片：">
                     <el-upload class="upload-demo"
                                name="picture" action="http://localhost:8088/upload/picture"
-                               list-type="picture-card" :limit="1" :show-file-list="false"
+                               list-type="picture-card" :limit="1" :fileList="fileList"
                                :before-upload="beforeUpload" :on-success="handleSucess" :on-exceed="handleExceed">
                         <img v-if="form.imageUrl" :src="form.imageUrl" class="avatar">
                         <i v-else class="el-icon-upload"></i>
@@ -63,7 +63,7 @@
                 <el-form-item label="更新图片：">
                     <el-upload class="upload-demo"
                                name="picture" action="http://localhost:8088/upload/picture"
-                               list-type="picture-card" :limit="1"
+                               list-type="picture-card" :limit="1" :fileList="fileList"
                                :before-upload="beforeUpload" :on-success="handleSucess" :on-exceed="handleExceed">
                         <i class="el-icon-upload"></i>
                     </el-upload>
@@ -206,6 +206,7 @@
             },
             //添加轮播图
             submitAddForm(){
+                this.fileList = [];
                 this.axios.post('http://localhost:8088/carousel/save',{
                     title:this.form.title,
                     url:this.form.url,
@@ -226,6 +227,7 @@
             },
             //编辑轮播图
             submitEditForm(){
+                this.fileList = [];
                 this.axios.post('http://localhost:8088/carousel/update',{
                     id:this.form.id,
                     title:this.form.title,

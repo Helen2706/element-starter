@@ -6,7 +6,7 @@
                     <span>后台管理系统</span>
                 </div>
                 <div class="navbar-menu">
-                    <el-menu default-active="4-2" background-color="#2f4050"
+                    <el-menu default-active="2" background-color="#2f4050"
                              text-color="#fff" active-text-color="#ffd04b">
                         <el-submenu index="1">
                             <template slot="title">
@@ -34,12 +34,14 @@
                                 </span>
                             </el-menu-item>
                         </router-link>
-                        <el-submenu index="3">
-                            <template slot="title">
+                        <router-link to="/back/module-management">
+                            <el-menu-item index="3">
                                 <i class="el-icon-circle-plus"></i>
-                                <span>代码生成</span>
-                            </template>
-                        </el-submenu>
+                                    <span slot="title">
+                                        代码生成
+                                    </span>
+                            </el-menu-item>
+                        </router-link>
                         <el-submenu index="8">
                             <template slot="title">
                                 <i class="el-icon-star-on"></i>
@@ -60,11 +62,27 @@
                                 </el-menu-item>
                             </router-link>
                         </el-submenu>
-                        <el-submenu index="4">
+                        <el-submenu index="9">
                             <template slot="title">
                                 <i class="el-icon-goods"></i>
-                                <span>图标管理</span>
+                                <span>新闻管理</span>
                             </template>
+                            <router-link to="/back/add-news">
+                                <el-menu-item index="9-1">
+                                    <i class="el-icon-plus"></i>
+                                    <span slot="title">
+                                    发布新闻
+                                </span>
+                                </el-menu-item>
+                            </router-link>
+                            <router-link to="/back/news-list">
+                                <el-menu-item index="9-2">
+                                    <i class="el-icon-tickets"></i>
+                                    <span slot="title">
+                                    新闻列表
+                                </span>
+                                </el-menu-item>
+                            </router-link>
                         </el-submenu>
                         <el-submenu index="5">
                             <template slot="title">

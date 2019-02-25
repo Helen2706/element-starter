@@ -8,6 +8,9 @@ import CollegeHomePage from '../components/CollegeHomePage'
 import Education from '../components/Education'
 import BoShiEducation from '../components/BoShiEducation'
 import Carousel from '../components/Carousel'
+import AddNews from '../components/AddNews'
+import NewsList from '../components/NewsList'
+import ModuleManagement from '../components/ModuleManagement'
 
 Vue.use(Router);
 
@@ -28,6 +31,16 @@ export default new Router({
                     component:NavbarManagement
                 },
                 {
+                    path:'add-news',
+                    name:'AddNews',
+                    component:AddNews
+                },
+                {
+                    path:'news-list',
+                    name:'NewsList',
+                    component:NewsList
+                },
+                {
                     /*学院网站信息基础设置*/
                     path:'basic-setting',
                     name:'BasicSetting',
@@ -37,6 +50,10 @@ export default new Router({
                     path:'carousel',
                     name:'Carousel',
                     component:Carousel
+                },{
+                    path:'module-management',
+                    name:'ModuleManagement',
+                    component:ModuleManagement
                 }
             ]
         },
@@ -47,8 +64,8 @@ export default new Router({
             children:[
                 {
                     path:'',
-                    name:'Carousel',
-                    component:Carousel
+                    name:'NavbarManagement',
+                    component:NavbarManagement
                 }]
         },
         {

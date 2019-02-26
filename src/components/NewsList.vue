@@ -41,7 +41,7 @@
             </el-tab-pane>
         </el-tabs>
         <!--编辑新闻对话框-->
-        <el-dialog title="编辑新闻" :visible="editNewsDialogVisible" width="900px">
+        <el-dialog title="编辑新闻" :visible="editNewsDialogVisible" width="900px" fullscreen>
             <div id="edit-news-form">
                 <el-form ref="form" :model="form" label-width="140px" size="medium">
                     <el-form-item label="标题：">

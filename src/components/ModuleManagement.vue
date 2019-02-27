@@ -5,6 +5,28 @@
             <el-button type="primary" size="small" icon="el-icon-plus" @click="handleAdd">添加</el-button>
             <el-button type="danger" size="small" icon="el-icon-delete" @click="batchRemove">删除</el-button>
         </div>
+        <div class="table">
+            <el-table :data="tableList" border stripe @selection-change="handleSelectionChange">
+                <el-table-column type="selection" align="center" width="80"></el-table-column>
+                <el-table-column label="表名称">
+                    <template slot-scope="scope">
+                        <el-tag type="primary" style="font-size:15px;">{{scope.row.TABLE_NAME}}</el-tag>
+                    </template>
+                </el-table-column>
+                <el-table-column label="描述" prop="TABLE_COMMENT" align="center"></el-table-column>
+                <el-table-column label="engine" prop="ENGINE" align="center"></el-table-column>
+                <el-table-column width="180" label="创建时间" align="center" prop="CREATE_TIME">
+                    <template slot-scope="scope">
+                        {{getStringDate(scope.row.CREATE_TIME)}}
+                    </template>
+                </el-table-column>
+                <el-table-column label="操作" align="center" width="300px">
+                    <template slot-scope="scope">
+                        <el-button size="mini" type="success" plain @click="handleDownload(scope.row)"><i class="el-icon-download"></i> 下载代码</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </div>
         <!--添加对话框-->
         <el-dialog :title="dialogParams.addDialogTitle" :visible.sync="dialogParams.addDialogVisible"
                    :width="dialogParams.width" :fullscreen="dialogParams.fullscreen">
@@ -83,21 +105,56 @@
                 },
                 dialogParams: {                      //对话框配置对象
                     addDialogTitle: '添加' + '模块',           //添加对话框标题
-                    addDialogVisible: true,         //添加对话框是否可见，默认隐藏
+                    addDialogVisible: false,         //添加对话框是否可见，默认隐藏
                     editDialogTitle: '编辑' + '模块',          //编辑对话框标题
                     editDialogVisible: false,        //编辑对话框是否可见，默认隐藏
                     width: '80%',                    //宽度，对话框全屏情况下无效
-                    fullscreen: true              //对话框是否全屏，默认false
-                }
+                    fullscreen: false              //对话框是否全屏，默认false
+                },
+                tableList:[{TABLE_NAME:'',TABLE_COMMENT:'',ENGINE:''}],
+                multipleSelection:[]
             }
         },
+        mounted(){
+            this.listTables();
+        },
         methods: {
+            /*查询数据库中所有表*/
+            listTables(){
+                this.axios.get('http://localhost:8088/module/list').then(
+                    body => {
+                        this.tableList = body.data;
+                    }
+                );
+            },
+            /*当点击下载代码按钮时*/
+            handleDownload(row){},
             /*当点击表格上面的添加按钮时*/
             handleAdd() {
                 this.dialogParams.addDialogVisible = true;
             },
             /*当点击批量删除按钮时*/
             batchRemove() {
+                var tables = [];
+                if(this.multipleSelection.length>0){
+                    for(var value of this.multipleSelection){
+                        tables.push(value.TABLE_NAME);
+                    }
+                    this.axios.get('http://localhost:8088/module/batchRemove', {
+                        params: {
+                            tables: tables
+                        }
+                    }).then((res) => {
+                        if (res.data.code == 0) {
+                            this.listTables();
+                            this.deleteSuccess();
+                        } else {
+                            this.deleteFailed();
+                        }
+                    }).catch((res)=> {
+                        console.log(res);
+                    });
+                }
             },
             /*当点击删除字段时*/
             removeField(field){
@@ -116,6 +173,8 @@
                 }).then((res) => {
                     if (res.data.code == 0) {
                         this.addSuccess();
+                        this.listTables();
+                        this.dialogParams.addDialogVisible = false;
                     } else {
                         this.addFailed();
                     }
@@ -129,6 +188,10 @@
                 this.form.fields.push(
                 {name: '',comment:'',type:null,length:null,required:false}
                 );
+            },
+            /*当更改多选框时*/
+            handleSelectionChange(val){
+                this.multipleSelection = val;
             },
             addSuccess() {
                 this.$message({
@@ -148,6 +211,22 @@
             editFailed() {
                 this.$message.error('编辑失败！');
             },
+            deleteSuccess() {
+                this.$message({
+                    message: '删除成功！',
+                    type: 'success'
+                });
+            },
+            deleteFailed() {
+                this.$message.error('操作失败！');
+            },
+            /*将毫秒数转化为时间*/
+            getStringDate(time){
+                if(time!=null&&time!=''){
+                    return new Date(time).toLocaleString().split("/").join('-');
+                }
+                return '';
+            },
         }
     }
 </script>
@@ -155,5 +234,12 @@
 <style scoped>
     #ModuleManagement .el-form-item {
         display: inline-block;
+    }
+    .table-top{
+        margin-left: 22px;
+    }
+    .table{
+        margin: 20px;
+        margin-top: 10px;
     }
 </style>

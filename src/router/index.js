@@ -11,6 +11,7 @@ import Carousel from '../components/Carousel'
 import AddNews from '../components/AddNews'
 import NewsList from '../components/NewsList'
 import ModuleManagement from '../components/ModuleManagement'
+import NotificationComponent from '../components/NotificationComponent'
 
 Vue.use(Router);
 
@@ -29,6 +30,11 @@ export default new Router({
                     path:'menu',
                     name:'NavbarManagement',
                     component:NavbarManagement
+                },
+                {
+                    path:'notification',
+                    name:'NotificationComponent',
+                    component:NotificationComponent
                 },
                 {
                     path:'add-news',

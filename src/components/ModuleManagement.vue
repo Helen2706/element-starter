@@ -121,14 +121,23 @@
         methods: {
             /*查询数据库中所有表*/
             listTables(){
-                this.axios.get('http://localhost:8088/module/list').then(
+                this.axios.get('/api/module/list').then(
                     body => {
                         this.tableList = body.data;
                     }
                 );
             },
             /*当点击下载代码按钮时*/
-            handleDownload(row){},
+            handleDownload(row){
+                this.axios.get('/api/module/download', {
+                    params: {
+                        tableName: row.TABLE_NAME
+                    }
+                }).then((res) => {
+
+                })
+            },
+
             /*当点击表格上面的添加按钮时*/
             handleAdd() {
                 this.dialogParams.addDialogVisible = true;
@@ -140,7 +149,7 @@
                     for(var value of this.multipleSelection){
                         tables.push(value.TABLE_NAME);
                     }
-                    this.axios.get('http://localhost:8088/module/batchRemove', {
+                    this.axios.get('/api/module/batchRemove', {
                         params: {
                             tables: tables
                         }
@@ -165,8 +174,7 @@
             },
             /*当添加表单点击提交时*/
             submitAddForm(){
-                console.log('field-form:',this.form);
-                this.axios.post('http://localhost:8088/module/add', {
+                this.axios.post('/api/module/add', {
                     moduleName:this.form.moduleName,
                     moduleEName:this.form.moduleEName,
                     fields:this.form.fields

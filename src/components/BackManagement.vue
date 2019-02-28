@@ -96,12 +96,14 @@
                                 <span>权限管理</span>
                             </template>
                         </el-submenu>
-                        <el-submenu index="7">
-                            <template slot="title">
+                        <router-link to="/back/notification">
+                            <el-menu-item index="7">
                                 <i class="el-icon-message"></i>
-                                <span>通知公告</span>
-                            </template>
-                        </el-submenu>
+                                <span slot="title">
+                                    通知公告
+                                </span>
+                            </el-menu-item>
+                        </router-link>
                         <el-submenu index="3">
                             <template slot="title">
                                 <i class="el-icon-bell"></i>

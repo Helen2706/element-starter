@@ -12,24 +12,31 @@ import AddNews from '../components/AddNews'
 import NewsList from '../components/NewsList'
 import ModuleManagement from '../components/ModuleManagement'
 import NotificationComponent from '../components/NotificationComponent'
+import SystemMenuComponent from '../components/SystemMenuComponent'
 
 Vue.use(Router);
 
 export default new Router({
-    routes:[
-        {
+    routes:[{
             path:'/back',
             name:'BackManagement',
             component:BackManagement,
-            children:[
-                {
+            children:[{
                     path:'',
-                    name:'Carousel',
-                    component:Carousel
+                    name:'NavbarManagement',
+                    component:NavbarManagement
                 },{
                     path:'menu',
                     name:'NavbarManagement',
                     component:NavbarManagement
+                },{
+                    path:'module-management',
+                    name:'ModuleManagement',
+                    component:ModuleManagement
+                },{
+                    path:'system-menu',
+                    name:'SystemMenuComponent',
+                    component:SystemMenuComponent
                 },
                 {
                     path:'notification',
@@ -56,10 +63,6 @@ export default new Router({
                     path:'carousel',
                     name:'Carousel',
                     component:Carousel
-                },{
-                    path:'module-management',
-                    name:'ModuleManagement',
-                    component:ModuleManagement
                 }
             ]
         },

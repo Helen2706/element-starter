@@ -6,8 +6,8 @@
                     <span>后台管理系统</span>
                 </div>
                 <div class="navbar-menu">
-                    <el-menu default-active="2" background-color="#2f4050"
-                             text-color="#fff" active-text-color="#ffd04b">
+                    <el-menu background-color="#2f4050"
+                             text-color="#fff" active-text-color="#ffd04b" router>
                         <el-submenu index="1">
                             <template slot="title">
                                 <i class="el-icon-location"></i>
@@ -54,8 +54,15 @@
                                     </span>
                                 </el-menu-item>
                             </router-link>
-                            <router-link to="/back/carousel">
+                            <router-link to="/back/system-menu">
                                 <el-menu-item index="4-2">
+                                    <span slot="title">
+                                        菜单设置
+                                    </span>
+                                </el-menu-item>
+                            </router-link>
+                            <router-link to="/back/carousel">
+                                <el-menu-item index="4-3">
                                     <span slot="title">
                                         轮播图设置
                                     </span>

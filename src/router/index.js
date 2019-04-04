@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import LoginVue from '../components/Login.vue'
 import BackManagement from '../components/BackManagement'
 import NavbarManagement from '../components/NavbarManagement'
 import BasicSetting from '../components/BasicSetting'
@@ -68,14 +69,8 @@ export default new Router({
         },
         {
             path:'',
-            name:'BackManagement',
-            component:BackManagement,
-            children:[
-                {
-                    path:'',
-                    name:'NavbarManagement',
-                    component:NavbarManagement
-                }]
+            name:'LoginVue',
+            component:LoginVue
         },
         {
             path:'/website',

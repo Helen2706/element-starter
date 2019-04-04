@@ -8,114 +8,13 @@
                 <div class="navbar-menu">
                     <el-menu background-color="#2f4050"
                              text-color="#fff" active-text-color="#ffd04b" router>
-                        <el-submenu index="1">
+                        <el-submenu v-for="menu,index in menuList" :index="menu.menuId+''" :key="menu.menuId">
                             <template slot="title">
-                                <i class="el-icon-location"></i>
-                                <span>导航一</span>
+                                <i v-if="index%2==0" class="el-icon-menu"></i>
+                                <i v-if="index%2!=0" class="el-icon-location"></i>
+                                <span style="font-size: 1.2em">{{menu.name}}</span>
                             </template>
-                            <el-menu-item-group>
-                                <template slot="title">分组一</template>
-                                <el-menu-item index="1-1">选项一</el-menu-item>
-                                <el-menu-item index="1-2">选项二</el-menu-item>
-                            </el-menu-item-group>
-                            <el-submenu index="1-3">
-                                <template slot="title">
-                                    <span>导航1-3</span>
-                                </template>
-                                <el-menu-item index="1-3-1">选项三</el-menu-item>
-                            </el-submenu>
-                            <el-menu-item index="1-4">选项四</el-menu-item>
-                        </el-submenu>
-                        <router-link to="/back/menu">
-                            <el-menu-item index="2">
-                                <i class="el-icon-menu"></i>
-                                <span slot="title">
-                                    菜单管理
-                                </span>
-                            </el-menu-item>
-                        </router-link>
-                        <router-link to="/back/module-management">
-                            <el-menu-item index="3">
-                                <i class="el-icon-circle-plus"></i>
-                                    <span slot="title">
-                                        代码生成
-                                    </span>
-                            </el-menu-item>
-                        </router-link>
-                        <el-submenu index="8">
-                            <template slot="title">
-                                <i class="el-icon-star-on"></i>
-                                <span>系统管理</span>
-                            </template>
-                            <router-link to="/back/basic-setting">
-                                <el-menu-item index="4-1">
-                                    <span slot="title">
-                                        基础设置
-                                    </span>
-                                </el-menu-item>
-                            </router-link>
-                            <router-link to="/back/system-menu">
-                                <el-menu-item index="4-2">
-                                    <span slot="title">
-                                        菜单设置
-                                    </span>
-                                </el-menu-item>
-                            </router-link>
-                            <router-link to="/back/carousel">
-                                <el-menu-item index="4-3">
-                                    <span slot="title">
-                                        轮播图设置
-                                    </span>
-                                </el-menu-item>
-                            </router-link>
-                        </el-submenu>
-                        <el-submenu index="9">
-                            <template slot="title">
-                                <i class="el-icon-goods"></i>
-                                <span>新闻管理</span>
-                            </template>
-                            <router-link to="/back/add-news">
-                                <el-menu-item index="9-1">
-                                    <i class="el-icon-plus"></i>
-                                    <span slot="title">
-                                    发布新闻
-                                </span>
-                                </el-menu-item>
-                            </router-link>
-                            <router-link to="/back/news-list">
-                                <el-menu-item index="9-2">
-                                    <i class="el-icon-tickets"></i>
-                                    <span slot="title">
-                                    新闻列表
-                                </span>
-                                </el-menu-item>
-                            </router-link>
-                        </el-submenu>
-                        <el-submenu index="5">
-                            <template slot="title">
-                                <i class="el-icon-circle-check"></i>
-                                <span>基础管理</span>
-                            </template>
-                        </el-submenu>
-                        <el-submenu index="6">
-                            <template slot="title">
-                                <i class="el-icon-edit"></i>
-                                <span>权限管理</span>
-                            </template>
-                        </el-submenu>
-                        <router-link to="/back/notification">
-                            <el-menu-item index="7">
-                                <i class="el-icon-message"></i>
-                                <span slot="title">
-                                    通知公告
-                                </span>
-                            </el-menu-item>
-                        </router-link>
-                        <el-submenu index="3">
-                            <template slot="title">
-                                <i class="el-icon-bell"></i>
-                                <span>用户管理</span>
-                            </template>
+                            <el-menu-item v-for="children in menu.childrens" :index="children.url">{{children.name}}</el-menu-item>
                         </el-submenu>
                     </el-menu>
                 </div>
@@ -169,7 +68,30 @@
 
 <script>
     export default {
-        name: "BackManagement"
+        name: "BackManagement",
+        data() {
+            return {
+                menuList: [],        //菜单列表
+            }
+        },
+        mounted() {
+            this.getMenuList();
+        },
+        methods: {
+            /*获取菜单列表数据*/
+            getMenuList() {
+                this.axios.get('http://localhost:8088/navbar/listByTree', {
+                    params: {
+                        offset: 0,
+                        limit: 100
+                    }
+                }).then(
+                    body => {
+                        this.menuList = body.data;
+                    }
+                );
+            }
+        }
     }
 </script>
 

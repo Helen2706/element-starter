@@ -104,11 +104,11 @@
                     ]
                 },
                 dialogParams: {                      //对话框配置对象
-                    addDialogTitle: '添加' + '模块',           //添加对话框标题
+                    addDialogTitle: '新建' + '数据库表',           //添加对话框标题
                     addDialogVisible: false,         //添加对话框是否可见，默认隐藏
                     editDialogTitle: '编辑' + '模块',          //编辑对话框标题
                     editDialogVisible: false,        //编辑对话框是否可见，默认隐藏
-                    width: '80%',                    //宽度，对话框全屏情况下无效
+                    width: '55%',                    //宽度，对话框全屏情况下无效
                     fullscreen: false              //对话框是否全屏，默认false
                 },
                 tableList:[{TABLE_NAME:'',TABLE_COMMENT:'',ENGINE:''}],

@@ -69,13 +69,13 @@
                 </span>
             </el-dialog>
             <!--编辑菜单对话框-->
-            <el-dialog title="编辑导航菜单" :visible.sync="editMenuDialogVisible" width="650px">
+            <el-dialog title="编辑导航菜单" :visible.sync="editMenuDialogVisible" width="450px">
                 <el-form ref="form" :model="form" label-width="100px">
                     <el-form-item label="菜单类型：">
                         <el-radio-group v-model="form.type" @change="menuRadioChange">
                             <el-radio :label="1" border>一级菜单</el-radio>
                             <el-radio :label="2" border>二级菜单</el-radio>
-                            <el-radio :label="3" border>三级菜单</el-radio>
+                            <!--<el-radio :label="3" border>三级菜单</el-radio>-->
                         </el-radio-group>
                     </el-form-item>
                     <el-form-item label="父级菜单：">
@@ -258,7 +258,7 @@
             },
             /*当提交添加菜单的表单时*/
             submitAddForm(){
-                this.axios.post('http://localhost:8088/navbar/save', {
+                this.axios.post('/api/navbar/save', {
                     name:this.form.name,
                     url:this.form.url,
                     parentId:this.form.parentId,
@@ -280,7 +280,7 @@
             },
             /*当提交编辑菜单的表单时*/
             submitEditForm(){
-                this.axios.post('http://localhost:8088/navbar/update', {
+                this.axios.post('/api/navbar/update', {
                     menuId:this.form.menuId,
                     name:this.form.name,
                     url:this.form.url,

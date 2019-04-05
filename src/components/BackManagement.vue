@@ -43,7 +43,7 @@
                                         <i class="el-icon-setting"></i>
                                         <span>设置</span>
                                     </el-menu-item>
-                                    <el-menu-item index="news4">
+                                    <el-menu-item index="news4" @click="logout">
                                         <i class="el-icon-circle-close-outline"></i>
                                         <span>退出</span>
                                     </el-menu-item>
@@ -72,10 +72,12 @@
         data() {
             return {
                 menuList: [],        //菜单列表
+                userDO:''
             }
         },
         mounted() {
             this.getMenuList();
+            this.getCurrentUser();
         },
         methods: {
             /*获取菜单列表数据*/
@@ -90,6 +92,28 @@
                         this.menuList = body.data;
                     }
                 );
+            },
+            /*获取当前已登录的用户*/
+            getCurrentUser(){
+                this.axios.get('http://localhost:8088/user/selectUser').then(res=>{
+                    this.userDO = res.data.userDO;
+                })
+            },
+            /*当点击退出按钮时*/
+            logout(){
+                this.$confirm('确认退出？','确认退出',{
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.axios.get('http://localhost:8088/user/logout').then(res=>{
+                        this.$message({
+                            type: 'success',
+                            message: '退出成功!'
+                        });
+                        this.$router.push({path:'/login'});
+                    })
+                })
             }
         }
     }

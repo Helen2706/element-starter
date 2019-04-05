@@ -25,7 +25,7 @@
                     </ul>
                 </el-form-item>
                 <el-button type="primary" @click.stop="submitForm">登录</el-button>
-                <el-button type="primary" @click="submitForm">重置</el-button>
+                <el-button type="primary" @click="resetForm">重置</el-button>
             </el-form>
         </div>
     </div>
@@ -63,10 +63,26 @@
         },
         methods: {
             submitForm(){
-
+                this.axios.post(
+                    'api/sys/login' + "?captcha=" + this.loginForm.captcha, {
+                        username: this.loginForm.name,
+                        password: this.loginForm.password
+                    }).then((res => {
+                    if (res.data.code == 0) {
+                        this.$router.push({path:'/back'});
+                    } else {
+                        this.$message.error(res.data.msg);
+                    }
+                    })
+                )
             },
             refreshCode(){
-                this.src = "http://localhost:8088/sys/captcha?t=" + new Date().getTime();
+                this.src = "api/sys/captcha?t=" + new Date().getTime();
+            },
+            resetForm(){
+                this.loginForm.name = '';
+                this.loginForm.password = '';
+                this.loginForm.captcha = '';
             }
         }
     }

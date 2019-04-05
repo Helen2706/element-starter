@@ -14,6 +14,7 @@ import NewsList from '../components/NewsList'
 import ModuleManagement from '../components/ModuleManagement'
 import NotificationComponent from '../components/NotificationComponent'
 import SystemMenuComponent from '../components/SystemMenuComponent'
+import UserComponent from '../components/UserComponent'
 
 Vue.use(Router);
 
@@ -45,6 +46,11 @@ export default new Router({
                     component:NotificationComponent
                 },
                 {
+                    path:'user',
+                    name:'UserComponent',
+                    component:UserComponent
+                },
+                {
                     path:'add-news',
                     name:'AddNews',
                     component:AddNews
@@ -69,6 +75,11 @@ export default new Router({
         },
         {
             path:'',
+            name:'LoginVue',
+            component:LoginVue
+        },
+        {
+            path:'/login',
             name:'LoginVue',
             component:LoginVue
         },

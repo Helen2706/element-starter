@@ -15,6 +15,7 @@ import ModuleManagement from '../components/ModuleManagement'
 import NotificationComponent from '../components/NotificationComponent'
 import SystemMenuComponent from '../components/SystemMenuComponent'
 import UserComponent from '../components/UserComponent'
+import RoleComponent from '../components/RoleComponent'
 
 Vue.use(Router);
 
@@ -44,6 +45,11 @@ export default new Router({
                     path:'notification',
                     name:'NotificationComponent',
                     component:NotificationComponent
+                },
+                {
+                    path:'role',
+                    name:'RoleComponent',
+                    component:RoleComponent
                 },
                 {
                     path:'user',
